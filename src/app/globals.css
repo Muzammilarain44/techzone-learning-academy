@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #050a1e;
+  color: #f8fafc;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.4);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #071231;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0ea5e9, #8b5cf6);
+  border-radius: 999px;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.06] border border-white/10 backdrop-blur-xl;
+  }
+  .glass-strong {
+    @apply bg-white/[0.09] border border-white/15 backdrop-blur-xl;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-sky-400 via-blue-500 to-violet-400 bg-clip-text text-transparent;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-500 to-violet-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/30 transition hover:shadow-glow hover:-translate-y-0.5;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10 hover:-translate-y-0.5;
+  }
+  .section-label {
+    @apply inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-sky-300;
+  }
+}
