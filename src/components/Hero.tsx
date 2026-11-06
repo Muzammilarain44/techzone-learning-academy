@@ -106,7 +106,7 @@ export default function Hero() {
           <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-sky-500/20 via-transparent to-violet-600/20 blur-2xl" />
           <div className="glass-strong relative overflow-hidden rounded-[2.5rem]">
             <Image
-              src="/hero-robot.jpg"
+              src="/hero-robot.jpg.webp"
               alt="AI robot learning on a laptop - Learn, Code, Innovate, Achieve"
               width={720}
               height={360}
