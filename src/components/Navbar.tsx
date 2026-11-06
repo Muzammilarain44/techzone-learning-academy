@@ -1,21 +1,32 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Menu, X, ArrowRight, Phone } from "lucide-react";
+import { Menu, X, ArrowRight, Phone, ChevronDown, Home } from "lucide-react";
 import { PHONE_DISPLAY, PHONE_TEL } from "../data/content";
 
 const links = [
-  { label: "Home", href: "/" },
-  { label: "Courses", href: "/#courses" },
-  { label: "Why Techzone", href: "/#why-techzone" },
-  { label: "Learning", href: "/#learning" },
-  { label: "Admission", href: "/#admission" },
+  { label: "Home", href: "/", icon: Home },
+  { label: "About", href: "/#why-techzone" },
+  { label: "Gallery", href: "/#environment" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Testimonials", href: "/#testimonials" },
   { label: "Contact", href: "/#contact" },
+];
+
+const courseLinks = [
+  { label: "All Courses", href: "/#courses" },
+  { label: "Artificial Intelligence & Machine Learning", href: "/courses/python-ai" },
+  { label: "Full Stack Web Development", href: "/courses/full-stack-development" },
+  { label: "Graphic Design", href: "/courses/advance-graphic-designing" },
+  { label: "Digital Marketing", href: "/courses/advance-digital-marketing" },
+  { label: "Python Programming", href: "/courses/python-data-analysis" },
+  { label: "Computer & IT Fundamentals", href: "/courses/cit" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [coursesOpen, setCoursesOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -46,7 +57,31 @@ export default function Navbar() {
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {links.map((l) => (
+          <a href="/" className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-sky-500 to-violet-600 px-4 py-2 text-sm font-bold text-white">
+            <Home className="h-4 w-4" /> Home
+          </a>
+          <div className="relative" onMouseEnter={() => setCoursesOpen(true)} onMouseLeave={() => setCoursesOpen(false)}>
+            <button
+              onClick={() => setCoursesOpen(!coursesOpen)}
+              className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
+            >
+              Courses <ChevronDown className="h-4 w-4" />
+            </button>
+            {coursesOpen && (
+              <div className="absolute left-0 top-full w-80 rounded-2xl glass-strong p-2 pt-3">
+                {courseLinks.map((c) => (
+                  <a
+                    key={c.href}
+                    href={c.href}
+                    className="block rounded-xl px-4 py-2.5 text-sm font-medium text-slate-100 hover:bg-white/10"
+                  >
+                    {c.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+          {links.slice(1).map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -80,7 +115,20 @@ export default function Navbar() {
 
       {open && (
         <nav className="mx-5 mt-3 rounded-2xl glass-strong p-3 lg:hidden">
-          {links.map((l) => (
+          <a href="/" onClick={() => setOpen(false)} className="block rounded-xl px-4 py-3 text-sm font-bold text-white hover:bg-white/10">
+            Home
+          </a>
+          {courseLinks.map((c) => (
+            <a
+              key={c.href}
+              href={c.href}
+              onClick={() => setOpen(false)}
+              className="block rounded-xl px-4 py-2.5 pl-8 text-sm font-medium text-slate-200 hover:bg-white/10"
+            >
+              {c.label}
+            </a>
+          ))}
+          {links.slice(1).map((l) => (
             <a
               key={l.href}
               href={l.href}

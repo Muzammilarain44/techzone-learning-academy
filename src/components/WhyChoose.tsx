@@ -1,42 +1,38 @@
 "use client";
 import { motion } from "framer-motion";
-import { FlaskConical, TrendingUp, GraduationCap, Briefcase, type LucideIcon } from "lucide-react";
+import { Laptop, Cpu, Users, TrendingUp, type LucideIcon } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
 const icons: Record<string, LucideIcon> = {
-  FlaskConical,
+  Laptop,
+  Cpu,
+  Users,
   TrendingUp,
-  GraduationCap,
-  Briefcase,
 };
 
 const cards = [
   {
     title: "Practical Learning",
-    description:
-      "Learn by doing. Classes focus on hands-on practice, not just theory — so you build real skills you can actually use.",
-    icon: "FlaskConical",
+    description: "Get hands-on experience with real-world projects.",
+    icon: "Laptop",
     gradient: "from-sky-500 to-blue-600",
   },
   {
     title: "Industry-Relevant Skills",
-    description:
-      "Courses are built around the skills used in today's technology work — modern tools, current methods and real tasks.",
-    icon: "TrendingUp",
+    description: "Learn skills that employers are looking for.",
+    icon: "Cpu",
     gradient: "from-violet-500 to-purple-600",
   },
   {
     title: "Expert Guidance",
-    description:
-      "Learn with guidance from instructors who explain concepts clearly, step by step, and help you when you get stuck.",
-    icon: "GraduationCap",
+    description: "Learn from experienced professionals.",
+    icon: "Users",
     gradient: "from-emerald-500 to-teal-500",
   },
   {
     title: "Career Development",
-    description:
-      "Build projects, grow your confidence and prepare for the next step — further learning, freelancing or a technology career.",
-    icon: "Briefcase",
+    description: "Build a stronger career with in-demand skills.",
+    icon: "TrendingUp",
     gradient: "from-amber-500 to-orange-500",
   },
 ];
@@ -49,7 +45,7 @@ export default function WhyChoose() {
           label="Why Techzone?"
           title="Why Choose"
           highlight="Techzone?"
-          description="A modern learning academy built around one idea: real skills, learned practically, with support at every step."
+          description="Learn practical skills and prepare for the digital future."
         />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

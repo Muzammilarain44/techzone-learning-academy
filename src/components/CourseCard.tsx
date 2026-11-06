@@ -15,25 +15,24 @@ export default function CourseCard({ course, index }: { course: Course; index: n
       whileHover={{ y: -8 }}
       className="glass group flex flex-col overflow-hidden rounded-3xl transition hover:border-white/25 hover:shadow-glow"
     >
-      <div className={`relative h-2 bg-gradient-to-r ${course.gradient}`} />
-      <div className="flex flex-1 flex-col p-7">
-        <div className="flex items-start justify-between gap-4">
-          <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${course.iconBg}`}>
-            <Icon className="h-7 w-7" />
-          </span>
-          <span className="flex flex-col items-end gap-1.5">
-            {course.featured && (
-              <span className="rounded-full bg-gradient-to-r from-sky-500 to-violet-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
-                Popular
-              </span>
-            )}
-            <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-300">
-              {course.category}
+      <div className={`relative flex h-36 items-center justify-center overflow-hidden bg-gradient-to-br ${course.gradient}`}>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:28px_28px]" />
+        <span className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">
+          <Icon className="h-8 w-8 text-white" />
+        </span>
+        <span className="absolute right-3 top-3 flex flex-col items-end gap-1.5">
+          {course.featured && (
+            <span className="rounded-full bg-white/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white backdrop-blur">
+              Popular
             </span>
+          )}
+          <span className="rounded-full border border-white/25 bg-black/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur">
+            {course.category}
           </span>
-        </div>
-
-        <h3 className="mt-5 text-xl font-bold leading-snug text-white">{course.title}</h3>
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col p-7">
+        <h3 className="text-xl font-bold leading-snug text-white">{course.title}</h3>
         <p className="mt-2 flex items-center gap-2 text-sm font-bold text-sky-300">
           <Clock className="h-4 w-4" /> Duration: {course.duration}
         </p>

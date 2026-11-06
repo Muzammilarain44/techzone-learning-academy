@@ -1,24 +1,29 @@
 "use client";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Code2, Brain, Palette, CheckCircle2, Phone, MessageCircle, Clock, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  GraduationCap,
+  Play,
+  Bot,
+  Brain,
+  Check,
+  Laptop,
+  Phone,
+  MessageCircle,
+  Clock,
+  MapPin,
+  BookOpen,
+} from "lucide-react";
 import { ADDRESS, CLASS_TIMING, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "../data/content";
 
-const HeroScene = dynamic(() => import("./three/HeroScene"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full items-center justify-center">
-      <div className="h-64 w-64 animate-pulse rounded-full bg-gradient-to-br from-sky-500/30 to-violet-600/30 blur-2xl" />
-    </div>
-  ),
-});
+const checklist = ["Learn", "Code", "Innovate", "Achieve"];
 
-const highlights = ["Hands-on practice", "Modern tools & skills", "Project-based learning"];
+const books = ["Artificial Intelligence", "Web Development", "Digital Marketing"];
 
 export default function Hero() {
   return (
     <section id="home" className="relative overflow-hidden pb-16 pt-32 lg:pt-40">
-      {/* Background glows */}
+      {/* Background glows - static, no 3D */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-blue-600/25 blur-[120px]" />
         <div className="absolute right-0 top-40 h-72 w-72 rounded-full bg-violet-600/20 blur-[100px]" />
@@ -29,8 +34,8 @@ export default function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:px-8">
         <div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="section-label">
-              <Sparkles className="h-3.5 w-3.5" /> Techzone Learning Academy
+            <span className="inline-flex items-center gap-2 rounded-full border border-sky-400/40 bg-sky-500/15 px-4 py-1.5 text-xs font-bold text-sky-300">
+              <GraduationCap className="h-4 w-4" /> Learn &bull; Practice &bull; Grow
             </span>
             <span className="ml-3 inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-300">
               <span className="h-2 w-2 rounded-full bg-emerald-400" /> Admission Open
@@ -43,7 +48,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
-            Build Your Future in <span className="gradient-text">Technology</span>
+            Build Your Future with <span className="gradient-text">Technology.</span>
           </motion.h1>
 
           <motion.p
@@ -52,10 +57,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300"
           >
-            Learn practical technology skills the modern way — with hands-on classes,
-            real projects and guidance at every step. From AI and web development to
-            design, marketing and Python, start where you are and build skills that matter.
-            Classes are 2 hours, 3 days a week, at our Karachi campus.
+            Techzone Learning Academy helps you develop in-demand skills in AI, Web
+            Development, Design and more.
           </motion.p>
 
           <motion.div
@@ -64,12 +67,20 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-8 flex flex-wrap items-center gap-4"
           >
-            <a href="/apply" className="btn-primary">
-              Apply Now <ArrowRight className="h-4 w-4" />
-            </a>
-            <a href="#courses" className="btn-secondary">
+            <a href="#courses" className="btn-primary">
               Explore Courses <ArrowRight className="h-4 w-4" />
             </a>
+            <a href="#learning" className="btn-secondary">
+              <Play className="h-4 w-4" /> Watch Intro
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-8 flex flex-wrap items-center gap-4"
+          >
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary">
               <MessageCircle className="h-5 w-5 text-emerald-400" /> WhatsApp {PHONE_DISPLAY}
             </a>
@@ -78,69 +89,77 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <motion.ul
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="mt-8 flex flex-wrap gap-x-6 gap-y-2"
-          >
-            {highlights.map((h) => (
-              <li key={h} className="flex items-center gap-2 text-sm font-medium text-slate-200">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> {h}
-              </li>
-            ))}
-          </motion.ul>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.55 }}
-            className="mt-10 flex flex-wrap gap-3"
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="mt-8 flex flex-wrap gap-3 text-xs font-semibold text-slate-100"
           >
-            {[
-              { icon: Brain, label: "AI & Machine Learning" },
-              { icon: Code2, label: "Web Development" },
-              { icon: Palette, label: "Graphic Design" },
-            ].map((c) => (
-              <span key={c.label} className="glass flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-slate-100">
-                <c.icon className="h-4 w-4 text-sky-300" /> {c.label}
-              </span>
-            ))}
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.65 }}
-            className="mt-6 grid gap-3 sm:grid-cols-3"
-          >
-            <span className="glass flex items-center gap-2 rounded-2xl px-4 py-3 text-xs font-semibold text-slate-100">
+            <span className="glass flex items-center gap-2 rounded-2xl px-4 py-3">
               <Clock className="h-4 w-4 shrink-0 text-sky-300" /> {CLASS_TIMING}
             </span>
-            <span className="glass flex items-center gap-2 rounded-2xl px-4 py-3 text-xs font-semibold text-slate-100">
-              <Phone className="h-4 w-4 shrink-0 text-sky-300" /> {PHONE_DISPLAY}
-            </span>
-            <span className="glass flex items-center gap-2 rounded-2xl px-4 py-3 text-xs font-semibold text-slate-100">
+            <span className="glass flex items-center gap-2 rounded-2xl px-4 py-3">
               <MapPin className="h-4 w-4 shrink-0 text-sky-300" /> {ADDRESS}
             </span>
           </motion.div>
         </div>
+
+        {/* Static hero visual - no 3D, built with CSS and icons */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative mx-auto h-[380px] w-full max-w-[560px] sm:h-[460px] lg:h-[540px]"
+          className="relative mx-auto w-full max-w-[560px]"
         >
           <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-sky-500/20 via-transparent to-violet-600/20 blur-2xl" />
-          <div className="glass-strong relative h-full w-full overflow-hidden rounded-[2.5rem]">
-            <HeroScene />
-            <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-2xl bg-navy-950/70 px-4 py-3 backdrop-blur">
-              <div>
-                <p className="text-sm font-bold text-white">Interactive 3D Learning</p>
-                <p className="text-xs text-slate-300">AI • Web • Design • Code — all in one place</p>
+          <div className="glass-strong relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0a1030] via-[#0d1b4d] to-[#1a0b3d] p-6 sm:p-8">
+            <div className="flex items-start justify-between gap-4">
+              <div className="rounded-2xl border border-sky-400/40 bg-sky-500/15 px-4 py-3">
+                <p className="text-2xl font-extrabold text-sky-300">AI</p>
+                <Brain className="mt-1 h-8 w-8 text-sky-300" />
               </div>
-              <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-semibold text-emerald-300">
-                Live 3D
-              </span>
+              <div className="rounded-2xl border border-white/15 bg-white/5 px-4 py-3">
+                <ul className="space-y-2">
+                  {checklist.map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm font-bold text-white">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-500">
+                        <Check className="h-3 w-3 text-white" />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-6 flex items-end justify-center gap-6">
+              <div className="flex flex-col items-center">
+                <span className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-violet-600 shadow-lg shadow-blue-600/40 sm:h-28 sm:w-28">
+                  <Bot className="h-14 w-14 text-white sm:h-16 sm:w-16" />
+                </span>
+                <div className="mt-4 flex w-48 items-center gap-3 rounded-2xl border border-white/15 bg-[#0a0f2a] px-4 py-3 sm:w-56">
+                  <Laptop className="h-8 w-8 shrink-0 text-sky-300" />
+                  <span className="text-2xl font-extrabold text-sky-300">T</span>
+                  <span className="text-xs font-semibold text-slate-300">Learn on a real computer</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 space-y-2">
+              {books.map((book, i) => (
+                <div
+                  key={book}
+                  className={`flex items-center gap-3 rounded-xl border border-white/10 bg-gradient-to-r px-4 py-2.5 text-sm font-bold text-white ${
+                    i === 0
+                      ? "from-sky-600/60 to-violet-600/40"
+                      : i === 1
+                        ? "from-violet-600/50 to-sky-600/30"
+                        : "from-indigo-600/50 to-blue-600/30"
+                  }`}
+                >
+                  <BookOpen className="h-4 w-4 shrink-0 text-sky-300" /> {book}
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>

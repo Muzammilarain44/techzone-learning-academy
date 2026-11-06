@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { Search, Phone } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import CourseCard from "./CourseCard";
-import { categories, courses, CLASS_TIMING, PHONE_DISPLAY, PHONE_TEL } from "../data/content";
+import { categories, courses, PHONE_DISPLAY, PHONE_TEL } from "../data/content";
 
 export default function Courses() {
   const [category, setCategory] = useState<string>("All");
@@ -32,7 +32,7 @@ export default function Courses() {
           label="Our Courses"
           title="Explore Our Professional"
           highlight="Courses"
-          description={`21 real courses from Techzone Learning Academy — development, design, AI & data, marketing, IT, languages and more. Classes are ${CLASS_TIMING.toLowerCase()}. Pick your path and apply on WhatsApp.`}
+          description="Discover the skills you need to succeed in the digital world."
         />
 
         <div className="mt-10 flex flex-col items-center gap-4">

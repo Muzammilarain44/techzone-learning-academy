@@ -5,6 +5,7 @@ import Courses from "../components/Courses";
 import LearningJourney from "../components/LearningJourney";
 import Environment from "../components/Environment";
 import Projects from "../components/Projects";
+import Testimonials from "../components/Testimonials";
 import Admission from "../components/Admission";
 import FAQ from "../components/FAQ";
 import AdmissionCTA from "../components/AdmissionCTA";
@@ -21,6 +22,7 @@ export default function Home() {
       <LearningJourney />
       <Environment />
       <Projects />
+      <Testimonials />
       <Admission />
       <FAQ />
       <AdmissionCTA />
