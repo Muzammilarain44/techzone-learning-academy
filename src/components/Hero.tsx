@@ -1,24 +1,16 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
   GraduationCap,
   Play,
-  Bot,
-  Brain,
-  Check,
-  Laptop,
   Phone,
   MessageCircle,
   Clock,
   MapPin,
-  BookOpen,
 } from "lucide-react";
 import { ADDRESS, CLASS_TIMING, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "../data/content";
-
-const checklist = ["Learn", "Code", "Innovate", "Achieve"];
-
-const books = ["Artificial Intelligence", "Web Development", "Digital Marketing"];
 
 export default function Hero() {
   return (
@@ -104,7 +96,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Static hero visual - no 3D, built with CSS and icons */}
+        {/* Hero visual - exact robot image cropped from the reference screenshot, no 3D */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -112,55 +104,15 @@ export default function Hero() {
           className="relative mx-auto w-full max-w-[560px]"
         >
           <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-sky-500/20 via-transparent to-violet-600/20 blur-2xl" />
-          <div className="glass-strong relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0a1030] via-[#0d1b4d] to-[#1a0b3d] p-6 sm:p-8">
-            <div className="flex items-start justify-between gap-4">
-              <div className="rounded-2xl border border-sky-400/40 bg-sky-500/15 px-4 py-3">
-                <p className="text-2xl font-extrabold text-sky-300">AI</p>
-                <Brain className="mt-1 h-8 w-8 text-sky-300" />
-              </div>
-              <div className="rounded-2xl border border-white/15 bg-white/5 px-4 py-3">
-                <ul className="space-y-2">
-                  {checklist.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm font-bold text-white">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-500">
-                        <Check className="h-3 w-3 text-white" />
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-6 flex items-end justify-center gap-6">
-              <div className="flex flex-col items-center">
-                <span className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-violet-600 shadow-lg shadow-blue-600/40 sm:h-28 sm:w-28">
-                  <Bot className="h-14 w-14 text-white sm:h-16 sm:w-16" />
-                </span>
-                <div className="mt-4 flex w-48 items-center gap-3 rounded-2xl border border-white/15 bg-[#0a0f2a] px-4 py-3 sm:w-56">
-                  <Laptop className="h-8 w-8 shrink-0 text-sky-300" />
-                  <span className="text-2xl font-extrabold text-sky-300">T</span>
-                  <span className="text-xs font-semibold text-slate-300">Learn on a real computer</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6 space-y-2">
-              {books.map((book, i) => (
-                <div
-                  key={book}
-                  className={`flex items-center gap-3 rounded-xl border border-white/10 bg-gradient-to-r px-4 py-2.5 text-sm font-bold text-white ${
-                    i === 0
-                      ? "from-sky-600/60 to-violet-600/40"
-                      : i === 1
-                        ? "from-violet-600/50 to-sky-600/30"
-                        : "from-indigo-600/50 to-blue-600/30"
-                  }`}
-                >
-                  <BookOpen className="h-4 w-4 shrink-0 text-sky-300" /> {book}
-                </div>
-              ))}
-            </div>
+          <div className="glass-strong relative overflow-hidden rounded-[2.5rem]">
+            <Image
+              src="/hero-robot.jpg"
+              alt="AI robot learning on a laptop - Learn, Code, Innovate, Achieve"
+              width={720}
+              height={360}
+              className="h-auto w-full object-cover"
+              priority
+            />
           </div>
         </motion.div>
       </div>
