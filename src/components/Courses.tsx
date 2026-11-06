@@ -25,7 +25,7 @@ export default function Courses() {
   }, [category, query]);
 
   return (
-    <section id="courses" className="relative py-20 lg:py-24">
+    <section id="courses" className="relative overflow-hidden py-20 lg:py-24">
       <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-[640px] -translate-x-1/2 rounded-full bg-violet-600/15 blur-[110px]" />
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading

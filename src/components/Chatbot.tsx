@@ -171,7 +171,7 @@ export default function Chatbot() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-4 right-4 z-50 flex max-w-[100vw] flex-col items-end gap-3">
       <AnimatePresence>
         {open && (
           <motion.div
@@ -179,7 +179,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.25 }}
-            className="flex h-[600px] max-h-[calc(100vh-7rem)] w-[calc(100vw-2.5rem)] max-w-sm flex-col overflow-hidden rounded-3xl border border-white/15 bg-navy-900/95 shadow-2xl shadow-black/60 backdrop-blur"
+            className="flex h-[600px] max-h-[calc(100vh-7rem)] w-[min(24rem,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-3xl border border-white/15 bg-navy-900/95 shadow-2xl shadow-black/60 backdrop-blur"
           >
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-white/10 bg-navy-950/80 px-4 py-3">
@@ -215,8 +215,8 @@ export default function Chatbot() {
 
             {view === "intro" ? (
               <div className="flex flex-1 flex-col items-center justify-center overflow-y-auto px-6 py-6 text-center">
-                <span className="relative block h-44 w-44 overflow-hidden rounded-full border border-sky-400/30 shadow-glow">
-                  <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide robot waving" width={176} height={176} className="h-full w-full object-cover" />
+                <span className="relative block h-48 w-48 overflow-hidden rounded-full border border-sky-400/30 shadow-glow">
+                  <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide robot waving" width={192} height={192} className="h-full w-full object-cover" />
                 </span>
                 <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.2em] text-sky-400">
                   Techzone Learning Academy • AI Assistant
@@ -269,7 +269,7 @@ export default function Chatbot() {
                             : "rounded-bl-sm border border-white/10 bg-white/[0.07] text-slate-100"
                         }`}
                       >
-                        <p className="whitespace-pre-line">{message.text}</p>
+                        <p dir="auto" className="whitespace-pre-line">{message.text}</p>
                         {message.links && message.links.length > 0 && (
                           <div className="mt-3 flex flex-wrap gap-2">
                             {message.links.map((link) => (
@@ -351,10 +351,12 @@ export default function Chatbot() {
                   <input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
+                    dir="auto"
+                    lang={lang === "ur" ? "ur" : "en"}
                     placeholder={
                       lang === "en"
                         ? "Type your question…"
-                        : "Apna sawal likhein…"
+                        : "اپنا سوال یہاں لکھیں…"
                     }
                     className="min-w-0 flex-1 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-slate-400 focus:border-sky-400 focus:outline-none"
                   />
@@ -366,10 +368,10 @@ export default function Chatbot() {
                     <Send className="h-5 w-5" />
                   </button>
                 </form>
-                <p className="bg-navy-950/80 px-4 pb-2.5 text-center text-[11px] text-slate-500">
+                <p className="bg-navy-950/80 px-4 pb-2.5 text-center text-[11px] leading-relaxed text-slate-500">
                   {lang === "en"
                     ? "Voice is free in your browser — tap the mic to speak, or Listen to hear replies."
-                    : "Voice aapke browser mein free hai — bolne ke liye mic dabayein, ya jawab sun'ne ke liye Listen dabayein."}
+                    : "Voice free hai — mic dabayein. اردو میں لکھنے کے لیے اپنے کی بورڈ سے اردو منتخب کریں۔"}
                 </p>
               </>
             )}
@@ -377,23 +379,31 @@ export default function Chatbot() {
         )}
       </AnimatePresence>
 
-      {/* Floating button */}
-      <motion.button
-        onClick={() => setOpen((v) => !v)}
-        whileHover={{ scale: 1.06 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label={open ? "Close Techzone Guide" : "Open Techzone Guide"}
-        className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-sky-400/50 bg-navy-900 shadow-xl shadow-blue-600/40"
-      >
-        {open ? (
-          <X className="h-7 w-7 text-white" />
-        ) : (
-          <>
-            <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide" width={64} height={64} className="h-full w-full object-cover" />
-            <span className="absolute right-0.5 top-0.5 h-3.5 w-3.5 rounded-full border-2 border-navy-900 bg-emerald-400" />
-          </>
+      {/* Floating button + label */}
+      <div className="flex items-center gap-2.5">
+        {!open && (
+          <span className="flex items-center gap-2 rounded-full border border-sky-400/40 bg-navy-900/90 py-2 pl-3 pr-4 text-xs font-extrabold text-white shadow-xl shadow-blue-600/30 backdrop-blur">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            Techzone Guide
+          </span>
         )}
-      </motion.button>
+        <motion.button
+          onClick={() => setOpen((v) => !v)}
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label={open ? "Close Techzone Guide" : "Open Techzone Guide"}
+          className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-sky-400/50 bg-navy-900 shadow-xl shadow-blue-600/40"
+        >
+          {open ? (
+            <X className="h-8 w-8 text-white" />
+          ) : (
+            <>
+              <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide" width={80} height={80} className="h-full w-full object-cover" />
+              <span className="absolute right-0.5 top-0.5 h-4 w-4 rounded-full border-2 border-navy-900 bg-emerald-400" />
+            </>
+          )}
+        </motion.button>
+      </div>
     </div>
   );
 }
