@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import Highlights from "../components/Highlights";
 import WhyChoose from "../components/WhyChoose";
 import Courses from "../components/Courses";
 import LearningJourney from "../components/LearningJourney";
@@ -17,6 +18,7 @@ export default function Home() {
     <main className="min-h-screen bg-navy-950 text-white">
       <Navbar />
       <Hero />
+      <Highlights />
       <WhyChoose />
       <Courses />
       <LearningJourney />
