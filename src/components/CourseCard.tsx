@@ -1,95 +1,56 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, BookOpen, Clock, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Clock } from "lucide-react";
 import type { Course } from "../data/content";
-import { WHATSAPP_URL } from "../data/content";
 
 export default function CourseCard({ course, index }: { course: Course; index: number }) {
-  const Icon = course.icon;
   return (
-    <motion.article
+    <motion.a
+      href={`/courses/${course.id}`}
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay: (index % 3) * 0.1 }}
+      transition={{ duration: 0.55, delay: (index % 4) * 0.08 }}
       whileHover={{ y: -8 }}
-      className="glass group flex flex-col overflow-hidden rounded-3xl transition hover:border-white/25 hover:shadow-glow"
+      className="glass group block overflow-hidden rounded-3xl transition hover:border-sky-400/40 hover:shadow-glow"
     >
-      <div className={`relative flex h-36 items-center justify-center overflow-hidden bg-gradient-to-br ${course.gradient}`}>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:28px_28px]" />
-        <span className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">
-          <Icon className="h-8 w-8 text-white" />
-        </span>
-        <span className="absolute right-3 top-3 flex flex-col items-end gap-1.5">
+      <div className="relative h-48 overflow-hidden">
+        <Image
+          src={`/courses/${course.id}.jpg`}
+          alt={course.title}
+          width={640}
+          height={427}
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent" />
+        <span className="absolute left-3 top-3 flex flex-col items-start gap-1.5">
           {course.featured && (
             <span className="rounded-full bg-white/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white backdrop-blur">
               Popular
             </span>
           )}
-          <span className="rounded-full border border-white/25 bg-black/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur">
+          <span className="rounded-full border border-white/25 bg-black/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur">
             {course.category}
           </span>
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-7">
-        <h3 className="text-xl font-bold leading-snug text-white">{course.title}</h3>
-        <p className="mt-2 flex items-center gap-2 text-sm font-bold text-sky-300">
-          <Clock className="h-4 w-4" /> Duration: {course.duration}
-        </p>
-        <p className="mt-3 text-sm leading-relaxed text-slate-300">{course.description}</p>
-
-        <div className="mt-5">
-          <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-300">
-            <BookOpen className="h-4 w-4" /> What you will learn
+      <div className="flex items-end justify-between gap-3 p-5">
+        <div className="min-w-0">
+          <h3 className="min-h-[3.25rem] text-lg font-bold leading-snug text-white">
+            {course.title}
+          </h3>
+          <p className="mt-2 flex items-center gap-2 text-sm font-bold text-sky-300">
+            <Clock className="h-4 w-4 shrink-0" /> Duration: {course.duration}
           </p>
-          <ul className="mt-3 space-y-2">
-            {course.learn.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm text-slate-200">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /> {item}
-              </li>
-            ))}
-          </ul>
         </div>
-
-        <div className="mt-5">
-          <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Syllabus</p>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {course.tools.map((t) => (
-              <span key={t} className="rounded-full bg-white/[0.07] border border-white/10 px-3 py-1 text-xs font-medium text-slate-200">
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-6 border-t border-white/10 pt-5">
-          <p className="text-xs text-slate-400">
-            Class timing: <span className="font-semibold text-slate-200">2 hours, 3 days a week</span>
-          </p>
-          <div className="mt-4 flex flex-wrap items-center gap-4">
-            <a
-              href={`/apply?course=${course.id}`}
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-sky-500 to-violet-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-600/30 transition hover:-translate-y-0.5"
-            >
-              Apply Now <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-bold text-emerald-300 transition hover:text-emerald-200"
-            >
-              <MessageCircle className="h-4 w-4" /> WhatsApp
-            </a>
-            <a
-              href={`/courses/${course.id}`}
-              className="inline-flex items-center gap-2 text-sm font-bold text-sky-300 transition group-hover:gap-3 group-hover:text-sky-200"
-            >
-              View Full Details <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
+        <span
+          aria-label={`View details of ${course.title}`}
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-violet-600 text-white shadow-lg shadow-blue-600/40 transition group-hover:translate-x-1 group-hover:shadow-glow"
+        >
+          <ArrowRight className="h-5 w-5" />
+        </span>
       </div>
-    </motion.article>
+    </motion.a>
   );
 }
