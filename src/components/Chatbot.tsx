@@ -184,7 +184,7 @@ export default function Chatbot() {
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-white/10 bg-navy-950/80 px-4 py-3">
               <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-sky-400/40">
-                <Image src="/techzone-guide.jpg" alt="Techzone Guide robot" width={44} height={44} className="h-full w-full object-cover" />
+                <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide robot" width={44} height={44} className="h-full w-full object-cover" />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-base font-extrabold text-white">
@@ -216,7 +216,7 @@ export default function Chatbot() {
             {view === "intro" ? (
               <div className="flex flex-1 flex-col items-center justify-center overflow-y-auto px-6 py-6 text-center">
                 <span className="relative block h-44 w-44 overflow-hidden rounded-full border border-sky-400/30 shadow-glow">
-                  <Image src="/techzone-guide.jpg" alt="Techzone Guide robot waving" width={176} height={176} className="h-full w-full object-cover" />
+                  <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide robot waving" width={176} height={176} className="h-full w-full object-cover" />
                 </span>
                 <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.2em] text-sky-400">
                   Techzone Learning Academy • AI Assistant
@@ -389,7 +389,7 @@ export default function Chatbot() {
           <X className="h-7 w-7 text-white" />
         ) : (
           <>
-            <Image src="/techzone-guide.jpg" alt="Techzone Guide" width={64} height={64} className="h-full w-full object-cover" />
+            <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide" width={64} height={64} className="h-full w-full object-cover" />
             <span className="absolute right-0.5 top-0.5 h-3.5 w-3.5 rounded-full border-2 border-navy-900 bg-emerald-400" />
           </>
         )}
