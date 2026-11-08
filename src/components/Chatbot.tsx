@@ -120,7 +120,7 @@ export default function Chatbot() {
       setVoiceNote(
         lang === "en"
           ? "Voice input is not supported in this browser. Please try Chrome."
-          : "Is browser mein voice input support nahi hai. Chrome try karein.",
+          : "اس براؤزر میں وائس ان پٹ سپورٹ نہیں ہے۔ براہ کرم کروم استعمال کریں۔",
       );
       return;
     }
@@ -152,7 +152,7 @@ export default function Chatbot() {
       setVoiceNote(
         lang === "en"
           ? "Voice playback is not supported in this browser."
-          : "Is browser mein voice playback support nahi hai.",
+          : "اس براؤزر میں وائس پلے بیک سپورٹ نہیں ہے۔",
       );
       return;
     }
@@ -184,15 +184,15 @@ export default function Chatbot() {
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-white/10 bg-navy-950/80 px-4 py-3">
               <span className="relative h-11 w-11 shrink-0">
-                <Image src="/tz-agent.png" alt="Techzone Guide robot" width={33} height={44} className="h-full w-auto object-contain drop-shadow-[0_4px_12px_rgba(59,130,246,0.5)]" />
+                <Image src="/tz-agent.png" alt="Techzone Agent robot" width={33} height={44} className="h-full w-auto object-contain drop-shadow-[0_4px_12px_rgba(59,130,246,0.5)]" />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-base font-extrabold text-white">
-                  Techzone <span className="text-sky-400">Guide</span>
+                  Techzone <span className="text-sky-400">Agent</span>
                 </p>
                 <p className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
                   <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  ONLINE • READY
+                  {lang === "en" ? "ONLINE • READY" : "آن لائن • تیار ہے"}
                 </p>
               </div>
               <div className="flex items-center gap-1">
@@ -226,15 +226,15 @@ export default function Chatbot() {
                   Techzone Learning Academy • AI Assistant
                 </p>
                 <h2 className="mt-2 text-3xl font-extrabold text-white">
-                  Techzone <span className="text-sky-400">Guide</span>
+                  Techzone <span className="text-sky-400">Agent</span>
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate-300">
                   Ask me about careers, courses, student life and admission. I
                   talk back!
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-slate-400">
-                  Careers, courses, admission aur timings ke baare mein mujh
-                  se poochein — main jawab dunga!
+                  کیریئر، کورسز، داخلہ اور کلاس کے اوقات کے بارے میں مجھ سے
+                  پوچھیں — میں جواب دوں گا!
                 </p>
                 <div className="mt-6 flex w-full flex-col gap-3">
                   <button
@@ -252,7 +252,7 @@ export default function Chatbot() {
                   >
                     اردو
                     <span className="block text-xs font-semibold text-sky-200">
-                      START IN URDU
+                      اردو میں شروع کریں
                     </span>
                   </button>
                 </div>
@@ -298,7 +298,13 @@ export default function Chatbot() {
                             ) : (
                               <Volume2 className="h-3.5 w-3.5" />
                             )}
-                            {speakingId === message.id ? "Stop" : "Listen"}
+                            {speakingId === message.id
+                              ? lang === "en"
+                                ? "Stop"
+                                : "روکیں"
+                              : lang === "en"
+                                ? "Listen"
+                                : "سنیں"}
                           </button>
                         )}
                       </div>
@@ -307,7 +313,9 @@ export default function Chatbot() {
                   {typing && (
                     <div className="flex justify-start">
                       <div className="rounded-2xl rounded-bl-sm border border-white/10 bg-white/[0.07] px-4 py-3 text-sm text-slate-300">
-                        Techzone Guide is typing…
+                        {lang === "en"
+                          ? "Techzone Agent is typing…"
+                          : "ٹیک زون ایجنٹ لکھ رہا ہے…"}
                       </div>
                     </div>
                   )}
@@ -375,7 +383,7 @@ export default function Chatbot() {
                 <p className="bg-navy-950/80 px-4 pb-2.5 text-center text-[11px] leading-relaxed text-slate-500">
                   {lang === "en"
                     ? "Voice is free in your browser — tap the mic to speak, or Listen to hear replies."
-                    : "Voice free hai — mic dabayein. اردو میں لکھنے کے لیے اپنے کی بورڈ سے اردو منتخب کریں۔"}
+                    : "وائس آپ کے براؤزر میں مفت ہے — بولنے کے لیے مائک دبائیں یا جواب سننے کے لیے سنیں دبائیں۔ اردو میں لکھنے کے لیے اپنے کی بورڈ سے اردو منتخب کریں۔"}
                 </p>
               </>
             )}
@@ -389,7 +397,7 @@ export default function Chatbot() {
           onClick={() => setOpen(false)}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.95 }}
-          aria-label="Close Techzone Guide"
+          aria-label="Close Techzone Agent"
           className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-sky-400/50 bg-navy-900 shadow-xl shadow-blue-600/40"
         >
           <X className="h-7 w-7 text-white" />
@@ -404,7 +412,7 @@ export default function Chatbot() {
             onClick={() => setOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
-            aria-label="Open Techzone Guide"
+            aria-label="Open Techzone Agent"
             className="relative block bg-transparent"
           >
             <Image src="/tz-agent.png" alt="TZ Agent" width={105} height={140} className="h-[140px] w-auto object-contain drop-shadow-[0_14px_24px_rgba(37,99,235,0.5)]" priority />
