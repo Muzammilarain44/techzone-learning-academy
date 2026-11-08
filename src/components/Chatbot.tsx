@@ -183,8 +183,8 @@ export default function Chatbot() {
           >
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-white/10 bg-navy-950/80 px-4 py-3">
-              <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-sky-400/40">
-                <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide robot" width={44} height={44} className="h-full w-full object-cover" />
+              <span className="relative h-11 w-11 shrink-0">
+                <Image src="/tz-agent.png" alt="Techzone Guide robot" width={33} height={44} className="h-full w-auto object-contain drop-shadow-[0_4px_12px_rgba(59,130,246,0.5)]" />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-base font-extrabold text-white">
@@ -215,9 +215,13 @@ export default function Chatbot() {
 
             {view === "intro" ? (
               <div className="flex flex-1 flex-col items-center justify-center overflow-y-auto px-6 py-6 text-center">
-                <span className="relative block h-48 w-48 overflow-hidden rounded-full border border-sky-400/30 shadow-glow">
-                  <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide robot waving" width={192} height={192} className="h-full w-full object-cover" />
-                </span>
+                <motion.span
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative block"
+                >
+                  <Image src="/tz-agent.png" alt="TZ Agent robot" width={168} height={224} className="h-56 w-auto object-contain drop-shadow-[0_18px_30px_rgba(37,99,235,0.45)]" />
+                </motion.span>
                 <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.2em] text-sky-400">
                   Techzone Learning Academy • AI Assistant
                 </p>
@@ -379,31 +383,34 @@ export default function Chatbot() {
         )}
       </AnimatePresence>
 
-      {/* Floating button + label */}
-      <div className="flex items-center gap-2.5">
-        {!open && (
-          <span className="flex items-center gap-2 rounded-full border border-sky-400/40 bg-navy-900/90 py-2 pl-3 pr-4 text-xs font-extrabold text-white shadow-xl shadow-blue-600/30 backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
-            Techzone Guide
-          </span>
-        )}
+      {/* Floating button — TZ Agent only, no text label, SS size (~140px tall) */}
+      {open ? (
         <motion.button
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen(false)}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.95 }}
-          aria-label={open ? "Close Techzone Guide" : "Open Techzone Guide"}
-          className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-sky-400/50 bg-navy-900 shadow-xl shadow-blue-600/40"
+          aria-label="Close Techzone Guide"
+          className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-sky-400/50 bg-navy-900 shadow-xl shadow-blue-600/40"
         >
-          {open ? (
-            <X className="h-8 w-8 text-white" />
-          ) : (
-            <>
-              <Image src="/techzone-guide.jpg.webp" alt="Techzone Guide" width={80} height={80} className="h-full w-full object-cover" />
-              <span className="absolute right-0.5 top-0.5 h-4 w-4 rounded-full border-2 border-navy-900 bg-emerald-400" />
-            </>
-          )}
+          <X className="h-7 w-7 text-white" />
         </motion.button>
-      </div>
+      ) : (
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+          className="shrink-0"
+        >
+          <motion.button
+            onClick={() => setOpen(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
+            aria-label="Open Techzone Guide"
+            className="relative block bg-transparent"
+          >
+            <Image src="/tz-agent.png" alt="TZ Agent" width={105} height={140} className="h-[140px] w-auto object-contain drop-shadow-[0_14px_24px_rgba(37,99,235,0.5)]" priority />
+          </motion.button>
+        </motion.div>
+      )}
     </div>
   );
 }
