@@ -214,11 +214,11 @@ export default function Chatbot() {
             </div>
 
             {view === "intro" ? (
-              <div className="flex flex-1 flex-col items-center justify-center overflow-y-auto px-6 py-6 text-center">
+              <div className="flex flex-1 flex-col items-center justify-start overflow-y-auto px-6 py-6 text-center">
                 <motion.span
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative block"
+                  className="relative block shrink-0"
                 >
                   <Image src="/tz-agent.png" alt="TZ Agent robot" width={168} height={224} className="h-56 w-auto object-contain drop-shadow-[0_18px_30px_rgba(37,99,235,0.45)]" />
                 </motion.span>
